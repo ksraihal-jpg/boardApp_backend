@@ -1,9 +1,13 @@
 const mongoose = require("mongoose");
-require("dotenv").config();
+const MONGO_URI = process.env.MONGO_URI;
+
+if (!MONGO_URI) {
+    throw new Error("MONGO_URI is not defined");
+}
 
 const connectDB = async () => {
     try {
-        await mongoose.connect("mongodb+srv://ksraihal_db_user:qkaakc4yyW7iPH5S@cluster0.ozdfza1.mongodb.net/", {
+        await mongoose.connect(MONGO_URI, {
             useNewUrlParser: true,
             useUnifiedTopology: true,
         });
