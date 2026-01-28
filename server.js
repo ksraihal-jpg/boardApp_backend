@@ -7,7 +7,10 @@ const { Server } = require("socket.io");
 const http = require("http");
 const Canvas = require("./models/canvasModel");
 const jwt = require("jsonwebtoken");
-const SECRET_KEY = "your_secret_key";
+const SECRET_KEY = process.env.SECRET_KEY;
+if (!SECRET_KEY) {
+    throw new Error("SECRET_KEY is not defined");
+}
 
 
 const userRoutes = require("./routes/userRoutes");
